@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Corte a domicílio com Estúdio Samuel — O Samuel vai até você, em casa, hotel ou escritório. Sarapuí e região.">
+<title>A Domicílio · Estúdio Samuel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0A0A0A;
+    --black-soft: #131313;
+    --black-card: #1A1A1A;
+    --gold: #C9A961;
+    --gold-bright: #D9B971;
+    --cream: #F5F1E8;
+    --cream-dim: #A8A397;
+    --line: rgba(201, 169, 97, 0.2);
+    --line-strong: rgba(201, 169, 97, 0.4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  ::selection { background: var(--gold); color: var(--black); }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  .eyebrow {
+    font-family: 'Instrument Sans', sans-serif;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  /* ── Nav ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 14px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 0.5px solid var(--line);
+  }
+
+  .logo-mark { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-mark * { text-decoration: none; }
+  .logo-mark img { width: 34px; height: 34px; object-fit: contain; }
+  .logo-text {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--cream);
+    line-height: 1;
+  }
+  .logo-text small {
+    display: block;
+    font-family: 'Instrument Sans', sans-serif;
+    font-style: normal;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  .nav-controls { display: flex; align-items: center; gap: 24px; }
+
+  .nav-link {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  .nav-link:hover { color: var(--gold); }
+
+  .nav-cta {
+    padding: 11px 22px;
+    background: var(--gold);
+    color: var(--black);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav-cta:hover { background: var(--gold-bright); transform: translateY(-1px); }
+  .nav-cta svg { width: 13px; height: 13px; }
+
+  @media (max-width: 600px) {
+    nav { padding: 12px 20px; }
+    .nav-link { display: none; }
+    .nav-cta { padding: 9px 16px; font-size: 11px; }
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 19px 34px;
+    background: var(--gold);
+    color: var(--black);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--cream);
+    transform: translateX(-101%);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary span, .btn-primary svg { position: relative; z-index: 2; }
+  .btn-primary svg { width: 16px; height: 16px; transition: transform 0.3s; }
+  .btn-primary:hover svg { transform: translateX(4px); }
+
+  /* ── Reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── Page header ── */
+  .dm-header {
+    padding: 140px 40px 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-bottom: 0.5px solid var(--line);
+  }
+
+  @media (max-width: 768px) { .dm-header { padding: 120px 20px 60px; } }
+
+  .dm-header .eyebrow { color: var(--gold); display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+  .dm-header .eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
+
+  .dm-header h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(42px, 7vw, 80px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: var(--cream);
+    margin-bottom: 24px;
+  }
+
+  .dm-header h1 em { font-style: italic; color: var(--gold); font-weight: 400; }
+
+  .dm-header p {
+    font-size: 17px;
+    color: var(--cream-dim);
+    max-width: 520px;
+    line-height: 1.65;
+  }
+
+  /* ── Benefits ── */
+  .dm-benefits-wrap {
+    background: var(--black-soft);
+    border-top: 0.5px solid var(--line);
+    border-bottom: 0.5px solid var(--line);
+    padding: 0 40px;
+  }
+
+  @media (max-width: 768px) { .dm-benefits-wrap { padding: 0 20px; } }
+
+  .dm-benefits {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 72px 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+  }
+
+  @media (max-width: 768px) { .dm-benefits { grid-template-columns: 1fr; } }
+
+  .dm-benefit {
+    background: var(--black-soft);
+    padding: 44px 36px;
+  }
+
+  .dm-benefit-icon {
+    width: 44px; height: 44px;
+    border: 0.5px solid var(--line-strong);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  .dm-benefit-icon svg { width: 20px; height: 20px; }
+
+  .dm-benefit h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--cream);
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .dm-benefit h3 em { font-style: italic; color: var(--gold); }
+
+  .dm-benefit p {
+    font-size: 14px;
+    color: var(--cream-dim);
+    line-height: 1.65;
+  }
+
+  /* ── Steps ── */
+  .dm-steps-wrap {
+    padding: 80px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) { .dm-steps-wrap { padding: 60px 20px; } }
+
+  .dm-steps-head {
+    margin-bottom: 56px;
+  }
+
+  .dm-steps-head .eyebrow { color: var(--gold); margin-bottom: 16px; display: block; }
+
+  .dm-steps-head h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(28px, 4vw, 40px);
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .dm-steps-head h2 em { font-style: italic; color: var(--gold); font-weight: 400; }
+
+  .dm-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 0.5px solid var(--line);
+  }
+
+  @media (max-width: 768px) { .dm-steps { grid-template-columns: 1fr; } }
+
+  .dm-step {
+    background: var(--black);
+    padding: 40px 32px;
+    position: relative;
+  }
+
+  .dm-step-num {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 56px;
+    color: var(--line-strong);
+    line-height: 1;
+    margin-bottom: 20px;
+    letter-spacing: -0.04em;
+  }
+
+  .dm-step h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--cream);
+    margin-bottom: 10px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .dm-step p {
+    font-size: 14px;
+    color: var(--cream-dim);
+    line-height: 1.65;
+  }
+
+  /* ── Services available ── */
+  .dm-services-wrap {
+    background: var(--black-soft);
+    border-top: 0.5px solid var(--line);
+    border-bottom: 0.5px solid var(--line);
+    padding: 0 40px;
+  }
+
+  @media (max-width: 768px) { .dm-services-wrap { padding: 0 20px; } }
+
+  .dm-services {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 72px 0;
+  }
+
+  .dm-services-head {
+    margin-bottom: 44px;
+  }
+
+  .dm-services-head .eyebrow { color: var(--gold); margin-bottom: 16px; display: block; }
+
+  .dm-services-head h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(28px, 4vw, 40px);
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .dm-services-head h2 em { font-style: italic; color: var(--gold); font-weight: 400; }
+
+  .dm-list { border-top: 0.5px solid var(--line); }
+
+  .dm-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 28px 0;
+    border-bottom: 0.5px solid var(--line);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.28s;
+  }
+
+  .dm-item:hover { padding-left: 12px; }
+  .dm-item:hover .dm-item-arrow { color: var(--gold); transform: translateX(4px); }
+
+  .dm-item-info { flex: 1; }
+
+  .dm-item-info h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+
+  .dm-item-info h3 em { font-style: italic; color: var(--gold); }
+
+  .dm-item-info p { font-size: 13px; color: var(--cream-dim); line-height: 1.5; }
+
+  .dm-item-arrow {
+    flex-shrink: 0;
+    color: var(--cream-dim);
+    transition: all 0.28s;
+  }
+
+  .dm-item-arrow svg { width: 18px; height: 18px; }
+
+  /* ── CTA ── */
+  .dm-cta {
+    background: var(--black-soft);
+    border-top: 0.5px solid var(--line);
+    border-bottom: 0.5px solid var(--line);
+    padding: 100px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media (max-width: 768px) { .dm-cta { padding: 70px 20px; } }
+
+  .dm-cta::before {
+    content: 'SAMUEL';
+    position: absolute;
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(140px, 22vw, 320px);
+    color: transparent;
+    -webkit-text-stroke: 1px var(--line);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .dm-cta .reveal { position: relative; z-index: 2; max-width: 680px; margin: 0 auto; }
+
+  .dm-cta .eyebrow { color: var(--gold); margin-bottom: 20px; display: block; }
+
+  .dm-cta h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: var(--cream);
+  }
+
+  .dm-cta h2 em { font-style: italic; color: var(--gold); }
+
+  .dm-cta p {
+    font-size: 16px;
+    color: var(--cream-dim);
+    max-width: 480px;
+    margin: 0 auto 36px;
+    line-height: 1.65;
+  }
+
+  .dm-cta .cta-note {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--cream-dim);
+    margin-bottom: 0;
+  }
+
+  .dm-cta .cta-note strong { color: var(--cream); font-weight: 500; }
+
+  /* ── Footer ── */
+  footer { border-top: 0.5px solid var(--line); }
+
+  .footer-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand { display: flex; flex-direction: column; gap: 24px; }
+
+  .footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--cream-dim);
+    line-height: 1.6;
+  }
+  .footer-info a { color: var(--cream); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+  .footer-info a:hover { color: var(--gold); }
+  .footer-info-map { display: inline-flex; align-items: center; gap: 6px; color: var(--cream-dim) !important; font-weight: 400 !important; }
+  .footer-info-map:hover { color: var(--gold) !important; }
+  .footer-info-map svg { width: 13px; height: 13px; flex-shrink: 0; color: var(--gold); }
+
+  .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 24px; }
+
+  .footer-nav { display: flex; flex-direction: column; gap: 14px; align-items: flex-end; }
+  .footer-nav a {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  .footer-nav a:hover { color: var(--gold); }
+
+  .footer-social { display: flex; gap: 8px; }
+  .footer-social-link {
+    width: 36px; height: 36px;
+    border: 0.5px solid var(--line-strong);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--cream-dim);
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .footer-social-link:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,169,97,0.06); }
+  .footer-social-link svg { width: 16px; height: 16px; }
+
+  .footer-bottom {
+    border-top: 0.5px solid var(--line);
+    padding: 14px 40px;
+    font-size: 11px;
+    color: var(--cream-dim);
+    opacity: 0.5;
+  }
+
+  @media (max-width: 600px) {
+    .footer-main { padding: 36px 20px; flex-direction: column; gap: 32px; }
+    .footer-right { align-items: flex-start; }
+    .footer-nav { align-items: flex-start; }
+    .footer-bottom { padding: 14px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo-mark">
+    <img src="assets/logo.svg" alt="Estúdio Samuel">
+    <div class="logo-text">
+      Estúdio Samuel
+      <small>Sarapuí · SP</small>
+    </div>
+  </a>
+  <div class="nav-controls">
+    <a href="servicos.html" class="nav-link">Serviços</a>
+    <a href="eventos.html" class="nav-link">Eventos</a>
+    <a href="#" class="nav-cta" onclick="openWA(event)">
+      Agendar
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- Header -->
+<div class="dm-header">
+  <div class="eyebrow">Atendimento a domicílio</div>
+  <h1>O Samuel vai<br><em>até você.</em></h1>
+  <p>Para quem prefere receber em casa, hotel ou escritório. O mesmo padrão do estúdio — no seu espaço, no seu tempo.</p>
+</div>
+
+<!-- Benefits -->
+<div class="dm-benefits-wrap">
+  <div class="dm-benefits reveal">
+
+    <div class="dm-benefit">
+      <div class="dm-benefit-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h3>No <em>seu espaço</em></h3>
+      <p>Casa, apartamento, hotel, escritório — onde você estiver. Sem deslocamento, sem fila de espera, sem adaptar sua rotina.</p>
+    </div>
+
+    <div class="dm-benefit">
+      <div class="dm-benefit-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <h3>No seu <em>horário</em></h3>
+      <p>Combine o horário que funciona para você. Atendimento personalizado, sem a correria do estúdio — só você e o Samuel.</p>
+    </div>
+
+    <div class="dm-benefit">
+      <div class="dm-benefit-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <h3>Mesmo <em>padrão</em></h3>
+      <p>O Samuel leva todo o equipamento necessário. A qualidade do estúdio — corte técnico, acabamento preciso — onde você estiver.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- How it works -->
+<div class="dm-steps-wrap">
+  <div class="dm-steps-head reveal">
+    <span class="eyebrow">Como funciona</span>
+    <h2>Três passos para<br><em>o Samuel chegar.</em></h2>
+  </div>
+
+  <div class="dm-steps reveal">
+
+    <div class="dm-step">
+      <div class="dm-step-num">01</div>
+      <h3>Mande uma mensagem</h3>
+      <p>Chame no WhatsApp e conte o que você precisa — corte, barba ou combo. O Samuel responde em minutos.</p>
+    </div>
+
+    <div class="dm-step">
+      <div class="dm-step-num">02</div>
+      <h3>Combine data e local</h3>
+      <p>Defina o dia, o horário e o endereço. O Samuel confirma a disponibilidade e alinha os detalhes com você.</p>
+    </div>
+
+    <div class="dm-step">
+      <div class="dm-step-num">03</div>
+      <h3>Relaxe e aproveite</h3>
+      <p>O Samuel chega no horário, monta o equipamento e entrega o resultado. Sem pressa, sem deslocamento.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- Services available -->
+<div class="dm-services-wrap">
+  <div class="dm-services">
+    <div class="dm-services-head reveal">
+      <span class="eyebrow">O que está disponível</span>
+      <h2>Serviços que o<br><em>Samuel leva até você.</em></h2>
+    </div>
+
+    <div class="dm-list">
+
+      <a href="#" class="dm-item reveal" onclick="openWA(event, 'Olá Samuel! Quero agendar um corte a domicílio.')">
+        <div class="dm-item-info">
+          <h3>Corte <em>masculino</em></h3>
+          <p>Corte à tesoura, degradê e acabamento na navalha — no seu próprio ambiente.</p>
+        </div>
+        <div class="dm-item-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </div>
+      </a>
+
+      <a href="#" class="dm-item reveal" onclick="openWA(event, 'Olá Samuel! Quero agendar barba com navalha a domicílio.')">
+        <div class="dm-item-info">
+          <h3>Barba <em>com navalha</em></h3>
+          <p>Toalha quente, navalha e ritual completo — sem precisar sair de casa.</p>
+        </div>
+        <div class="dm-item-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </div>
+      </a>
+
+      <a href="#" class="dm-item reveal" onclick="openWA(event, 'Olá Samuel! Quero agendar combo Corte + Barba a domicílio.')">
+        <div class="dm-item-info">
+          <h3>Combo <em>Corte + Barba</em></h3>
+          <p>O mais pedido — corte completo e barba feita no ritual, onde você preferir.</p>
+        </div>
+        <div class="dm-item-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </div>
+      </a>
+
+      <a href="#" class="dm-item reveal" onclick="openWA(event, 'Olá Samuel! Quero agendar um corte infantil a domicílio.')">
+        <div class="dm-item-info">
+          <h3>Corte <em>infantil</em></h3>
+          <p>A criança fica no ambiente que ela já conhece — muito mais tranquilo para todo mundo.</p>
+        </div>
+        <div class="dm-item-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="dm-cta">
+  <div class="reveal">
+    <span class="eyebrow">Agendar visita</span>
+    <h2>Pronto para receber<br><em>o Samuel em casa?</em></h2>
+    <p>Chame no WhatsApp, conte o que você precisa e combine a visita. Resposta em minutos.</p>
+    <a href="#" class="btn-primary" onclick="openWA(event, 'Olá Samuel! Quero agendar um atendimento a domicílio.')">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.84 12.84 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <span>Chamar no WhatsApp</span>
+    </a>
+    <p class="cta-note"><strong>(15) 99754-5678</strong> &nbsp;·&nbsp; Responde em minutos</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <a href="index.html" class="logo-mark">
+        <img src="assets/logo.svg" alt="Estúdio Samuel">
+        <div class="logo-text">Estúdio Samuel<small>Sarapuí · SP</small></div>
+      </a>
+      <div class="footer-info">
+        <a href="https://www.google.com/maps/search/?api=1&query=R.+Dr.+Cerqueira+C%C3%A9sar%2C+425%2C+Sarapu%C3%AD+-+SP%2C+18225-002" target="_blank" rel="noopener" class="footer-info-map">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          R. Dr. Cerqueira César, 425 · Sarapuí SP
+        </a>
+        <span>Seg – Sáb &nbsp;·&nbsp; 09h30 – 18h</span>
+      </div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-nav">
+        <a href="servicos.html">Serviços</a>
+        <a href="eventos.html">Eventos</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://wa.me/5515997545678" class="footer-social-link" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.84 12.84 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+        <a href="https://instagram.com/estudio.samuel" class="footer-social-link" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Estúdio Samuel · Sarapuí SP</span>
+  </div>
+</footer>
+
+<script>
+  const WA = '5515997545678';
+  function openWA(e, msg) {
+    e.preventDefault();
+    window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg || 'Olá Samuel! Quero agendar um atendimento a domicílio.')}`, '_blank');
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

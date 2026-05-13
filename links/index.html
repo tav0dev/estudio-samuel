@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Estúdio Samuel — Barbearia em Sarapuí, SP. Agende, veja serviços e encontre o estúdio.">
+<title>Estúdio Samuel · Links</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0A0A0A;
+    --black-soft: #131313;
+    --black-card: #1A1A1A;
+    --gold: #C9A961;
+    --gold-bright: #D9B971;
+    --cream: #F5F1E8;
+    --cream-dim: #A8A397;
+    --line: rgba(201, 169, 97, 0.2);
+    --line-strong: rgba(201, 169, 97, 0.4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  ::selection { background: var(--gold); color: var(--black); }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 56px 20px 48px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% -10%, rgba(201, 169, 97, 0.12) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 110%, rgba(201, 169, 97, 0.06) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ── Header ── */
+  .lk-header {
+    text-align: center;
+    margin-bottom: 28px;
+    animation: fadeUp 0.5s ease 0.05s backwards;
+    text-decoration: none;
+  }
+  .lk-header * { text-decoration: none; }
+
+  .lk-logo {
+    width: 76px; height: 76px;
+    object-fit: contain;
+    margin-bottom: 18px;
+    filter: drop-shadow(0 0 32px rgba(201, 169, 97, 0.22));
+  }
+
+  .lk-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 30px;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .lk-sub {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  /* ── Status ── */
+  .lk-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 0.5px solid var(--line-strong);
+    background: rgba(201, 169, 97, 0.05);
+    border-radius: 2px;
+    font-size: 12px;
+    color: var(--cream);
+    margin-bottom: 32px;
+    animation: fadeUp 0.5s ease 0.15s backwards;
+  }
+
+  .lk-dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(201, 169, 97, 0.6); }
+    50% { box-shadow: 0 0 0 6px rgba(201, 169, 97, 0); }
+  }
+
+  /* ── Links ── */
+  .lk-links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.5s ease 0.25s backwards;
+  }
+
+  .lk-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 17px 20px;
+    border: 0.5px solid var(--line);
+    background: var(--black-soft);
+    text-decoration: none;
+    color: var(--cream);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .lk-link::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--gold);
+    transform: scaleY(0);
+    transition: transform 0.28s;
+    transform-origin: bottom;
+  }
+
+  .lk-link:hover { border-color: var(--line-strong); background: var(--black-card); padding-left: 26px; }
+  .lk-link:hover::before { transform: scaleY(1); }
+
+  .lk-link--primary {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--black);
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    font-size: 13px;
+  }
+
+  .lk-link--primary::before { background: rgba(0,0,0,0.15); }
+  .lk-link--primary:hover { background: var(--gold-bright); border-color: var(--gold-bright); color: var(--black); }
+
+  .lk-icon {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    border: 0.5px solid var(--line-strong);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    transition: all 0.28s;
+  }
+
+  .lk-link--primary .lk-icon { border-color: rgba(0,0,0,0.2); color: var(--black); }
+  .lk-link:hover .lk-icon { background: rgba(201,169,97,0.1); }
+  .lk-link--primary:hover .lk-icon { background: rgba(0,0,0,0.08); }
+  .lk-icon svg { width: 16px; height: 16px; }
+
+  .lk-text { flex: 1; line-height: 1.2; }
+  .lk-text small {
+    display: block;
+    font-size: 11px;
+    color: var(--cream-dim);
+    font-weight: 400;
+    margin-top: 2px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .lk-link--primary .lk-text small { color: rgba(10,10,10,0.55); }
+
+  .lk-arrow { flex-shrink: 0; color: var(--cream-dim); transition: transform 0.28s; }
+  .lk-link--primary .lk-arrow { color: rgba(10,10,10,0.4); }
+  .lk-link:hover .lk-arrow { transform: translateX(4px); }
+  .lk-arrow svg { width: 14px; height: 14px; }
+
+  /* ── Info bar ── */
+  .lk-info {
+    width: 100%;
+    padding: 20px 4px;
+    border-top: 0.5px solid var(--line);
+    border-bottom: 0.5px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    animation: fadeUp 0.5s ease 0.38s backwards;
+  }
+
+  .lk-info-item { display: flex; flex-direction: column; gap: 4px; }
+  .lk-info-item small { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+  .lk-info-item span { font-family: 'Fraunces', serif; font-size: 15px; color: var(--cream); }
+  .lk-info-sep { width: 0.5px; height: 36px; background: var(--line); }
+
+  /* ── Address ── */
+  .lk-address {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--cream-dim);
+    text-decoration: none;
+    margin-bottom: 28px;
+    transition: color 0.3s;
+    animation: fadeUp 0.5s ease 0.48s backwards;
+  }
+  .lk-address:hover { color: var(--gold); }
+  .lk-address svg { width: 14px; height: 14px; flex-shrink: 0; color: var(--gold); }
+
+  /* ── Footer ── */
+  .lk-footer {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    opacity: 0.4;
+    text-align: center;
+    animation: fadeUp 0.5s ease 0.55s backwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="lk-header">
+    <img src="assets/logo.svg" alt="Estúdio Samuel" class="lk-logo">
+    <div class="lk-name">Estúdio Samuel</div>
+    <div class="lk-sub" style="line-height:2.4;">35 anos de ofício<br>Certificado internacionalmente</div>
+  </div>
+
+  <div class="lk-status">
+    <span class="lk-dot"></span>
+    Agenda aberta &nbsp;·&nbsp; Garanta sua vaga
+  </div>
+
+  <div class="lk-links">
+
+    <a href="#" class="lk-link lk-link--primary" onclick="openWA(event)">
+      <span class="lk-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.84 12.84 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </span>
+      <span class="lk-text">
+        Quero agendar meu horário
+        <small>Resposta em minutos — (15) 99754-5678</small>
+      </span>
+      <span class="lk-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+    </a>
+
+    <a href="servicos.html" class="lk-link">
+      <span class="lk-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+      </span>
+      <span class="lk-text">
+        Ver serviços e preços
+        <small>Corte, barba e combos</small>
+      </span>
+      <span class="lk-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+    </a>
+
+    <a href="https://www.google.com/maps/search/?api=1&query=R.+Dr.+Cerqueira+C%C3%A9sar%2C+425%2C+Sarapu%C3%AD+-+SP%2C+18225-002" target="_blank" rel="noopener" class="lk-link">
+      <span class="lk-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </span>
+      <span class="lk-text">
+        Como chegar ao estúdio
+        <small>Abrir rota no Google Maps</small>
+      </span>
+      <span class="lk-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+    </a>
+
+    <a href="domicilio.html" class="lk-link">
+      <span class="lk-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </span>
+      <span class="lk-text">
+        Corte a domicílio
+        <small>O Samuel vai até você</small>
+      </span>
+      <span class="lk-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+    </a>
+
+    <a href="eventos.html" class="lk-link">
+      <span class="lk-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </span>
+      <span class="lk-text">
+        Atendimento para eventos
+        <small>Casamentos, corporativos e produções</small>
+      </span>
+      <span class="lk-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+    </a>
+
+    <a href="https://instagram.com/estudio.samuel" target="_blank" rel="noopener" class="lk-link">
+      <span class="lk-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </span>
+      <span class="lk-text">
+        Ver os trabalhos
+        <small>Cortes reais, resultados reais</small>
+      </span>
+      <span class="lk-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+    </a>
+
+    <a href="index.html" class="lk-link">
+      <span class="lk-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </span>
+      <span class="lk-text">
+        Site completo
+        <small>História, trabalho e diferenciais</small>
+      </span>
+      <span class="lk-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+    </a>
+
+  </div>
+
+  <div class="lk-info">
+    <div class="lk-info-item">
+      <small>Horário</small>
+      <span>Seg – Sáb</span>
+    </div>
+    <div class="lk-info-sep"></div>
+    <div class="lk-info-item">
+      <small>Atendimento</small>
+      <span>09h30 – 18h</span>
+    </div>
+    <div class="lk-info-sep"></div>
+    <div class="lk-info-item">
+      <small>Localização</small>
+      <span>Sarapuí · SP</span>
+    </div>
+  </div>
+
+  <a href="https://www.google.com/maps/search/?api=1&query=R.+Dr.+Cerqueira+C%C3%A9sar%2C+425%2C+Sarapu%C3%AD+-+SP%2C+18225-002" target="_blank" rel="noopener" class="lk-address">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    R. Dr. Cerqueira César, 425 · Sarapuí SP
+  </a>
+
+  <div class="lk-footer">© 2026 Estúdio Samuel · Sarapuí SP</div>
+
+</div>
+<script>
+  const WA = '5515997545678';
+  function openWA(e, msg) {
+    e.preventDefault();
+    window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg || 'Olá Samuel! Vim pelo Instagram e quero agendar um horário.')}`, '_blank');
+  }
+</script>
+</body>
+</html>
